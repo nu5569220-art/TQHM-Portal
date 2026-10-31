@@ -1,0 +1,17 @@
+<!doctype html><html lang="bn"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>অনলাইন ভর্তি আবেদন | TQHM</title>
+<style>body{font-family:system-ui;background:#f2f6f8;margin:0;padding:20px;color:#18313b}.wrap{max-width:680px;margin:auto;background:white;padding:24px;border-radius:16px;box-shadow:0 8px 28px #0001}h1{color:#116878}label{display:block;font-weight:600;margin-top:13px}input,select,textarea{box-sizing:border-box;width:100%;padding:12px;border:1px solid #cbd5dc;border-radius:8px;margin-top:5px;font:inherit}button{margin-top:18px;background:#116878;color:white;border:0;border-radius:8px;padding:13px 20px;font-weight:700;width:100%}#msg{margin-top:15px;padding:12px;background:#edf5f7;border-radius:8px}</style>
+<div class="wrap"><h1>তাহফীজুল কুরআন হানাফিয়া মডেল মাদরাসা</h1><h2>অনলাইন ভর্তি আবেদন</h2><p>ফরমটি পূরণ করে আবেদন জমা দিন। কর্তৃপক্ষ যাচাই করে সিদ্ধান্ত জানাবে।</p>
+<form id="f">
+<label>শিক্ষার্থীর নাম *</label><input name="studentName" required>
+<label>পিতার নাম *</label><input name="fatherName" required>
+<label>মাতার নাম</label><input name="motherName">
+<label>পিতার মোবাইল *</label><input name="fatherMobile" required inputmode="tel">
+<label>জন্ম তারিখ</label><input name="dob" type="date">
+<label>ভর্তিচ্ছু শ্রেণি *</label><select name="className" required><option value="">নির্বাচন করুন</option><option>প্রি-প্লে</option><option>প্লে</option><option>নার্সারী</option><option>১ম শ্রেণি</option><option>২য় শ্রেণি</option><option>৩য় শ্রেণি</option><option>৪র্থ শ্রেণি</option><option>নূরানী</option><option>নাযেরা</option><option>হিফজ</option></select>
+<label>ঠিকানা</label><textarea name="address" rows="3"></textarea>
+<button type="submit">আবেদন জমা দিন</button></form><div id="msg" hidden></div></div>
+<script>
+const API="https://script.google.com/macros/s/AKfycbx7M0c-APniOaQPylENPaXwa7JjWzniRUDw6UVhMyxmuwaMYcLhN2s2jIB5Iwyme1vY/exec";
+document.getElementById("f").addEventListener("submit",async e=>{e.preventDefault();const f=e.currentTarget,app=Object.fromEntries(new FormData(f).entries());app.submittedAt=new Date().toISOString();const m=document.getElementById("msg");m.hidden=false;m.textContent="আবেদন পাঠানো হচ্ছে…";
+try{await fetch(API,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify({action:"admissionSubmit",application:app})});m.textContent="আবেদন পাঠানো হয়েছে। কর্তৃপক্ষ আবেদন যাচাই করে যোগাযোগ করবেন। আবেদন গ্রহণের রেকর্ড অ্যাডমিনের Google Sheet-এ যাচাই করুন।";f.reset()}catch(err){m.textContent="আবেদন পাঠানো যায়নি। ইন্টারনেট সংযোগ পরীক্ষা করে আবার চেষ্টা করুন।"}});
+</script></html>
